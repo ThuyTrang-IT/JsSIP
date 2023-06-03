@@ -1,5 +1,5 @@
 import JsSIP from 'jssip';
-
+/////chu thich
 const socket = new JsSIP.WebSocketInterface('wss://sbc03.tel4vn.com:7444'); // thay đổi địa chỉ SIP server tương ứng
 const configuration = {
     sockets: [socket],
