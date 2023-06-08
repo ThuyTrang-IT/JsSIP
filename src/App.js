@@ -1,5 +1,6 @@
 import './App.css';
 import JsSIP from 'jssip'; //thêm cái này
+
 import React, { useState } from 'react';
 
 function Numpad() {
@@ -13,7 +14,27 @@ function Numpad() {
   const handleDelete = () => {
     setInputValue(inputValue.slice(0, -1));
   }
+  
 
+    
+  
+
+  function handleHangup() {
+    if (session) {
+      session.terminate(); // Gọi phương thức terminate() trên đối tượng session
+      
+      setSession(null);
+      
+    }
+  }
+
+  
+  
+  
+
+  
+  
+  
   //thêm xử lý khi ấn nút Call
   const handleCall = (inputValue) => {
     const phoneNumber = inputValue; // inputValue là số điện thoại nhập vào từ bàn phím, khi ấn nút call này thì sdt gán vào biến "phoneNumber" 
@@ -74,9 +95,12 @@ function Numpad() {
         <button onClick={() => handleInput("9")}>9</button>
       </div>
       <div className="row">
-        <button onClick={() => handleDelete()}>Delete</button>
-        <button onClick={() => handleInput("0")}>0</button>
+        <button className="clear" onClick={() => handleDelete()}>Delete</button>
+        <button className="zero" onClick={() => handleInput("0")}>0</button>
        <button onClick={() => handleCall(inputValue)}>Call</button> {/* Thay đổi chỗ này! Khi ấn vào nút Call thì Onclick sẽ gọi hàm handleCall với tham số là inputValue(số điện thoại) */}
+      </div>
+      <div className="row">
+        <button className="end" onClick={ () => handleHangup()}> End</button>
       </div>
     </div>
   );
